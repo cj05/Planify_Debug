@@ -30,11 +30,8 @@ app.post("/api/token", async (req, res) => {
   const { access_token } = resp
 
   // Return the access_token to our client as { access_token: "..."}
-  console.log(resp)
   res.send({access_token});
 });
-
-console.log(process.env)
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
