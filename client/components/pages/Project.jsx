@@ -111,7 +111,12 @@ const Project = () => {
   return (
     <div id="app">
       <ErrorBoundary>
-        <img src={logo} width="100" height="45" style={{position:"fixed",top:10,left:10,zIndex:10000}} />
+        <img src={logo} width="100" height="45" style={{position: "fixed", 
+  top: "4.5%", 
+  left: "11%", 
+  transform: "translate(-50%, -50%)", 
+  zIndex: 10000 
+}} />
         <Interface user={user}/>
         
         {/* /api/v1/project/{projectId}/members */}

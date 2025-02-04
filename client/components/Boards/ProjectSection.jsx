@@ -21,14 +21,6 @@ export function ProjectSection({ projects, setProjects, activeProject, setActive
     const projectDescription = newProject.description.trim();
 
     if (projectName) {
-      const newProjectData = {
-        id: uuidv4(),
-        name: projectName,
-        description: projectDescription,
-      };
-      setProjects((prevProjects) => [...prevProjects, newProjectData]);
-      resetPopupOverlay();
-
       const newProjectDat = {
         name: projectName,
         description: projectDescription,
@@ -42,6 +34,14 @@ export function ProjectSection({ projects, setProjects, activeProject, setActive
         },
         body: JSON.stringify(newProjectDat)
 
+      }).then(data => data.json()).then(data => {
+        const newProjectData = {
+          id: data.projectId,
+          name: projectName,
+          description: projectDescription,
+        };
+        setProjects((prevProjects) => [...prevProjects, newProjectData]);
+        resetPopupOverlay();
       }).catch(e => console.log(e));
     } else {
       alert('Please enter a project name.');
@@ -62,7 +62,9 @@ export function ProjectSection({ projects, setProjects, activeProject, setActive
       </div>
 
       <div id="project-list-container">
-        {projects.map((project) => (
+        {console.log("projects achi: ",JSON.stringify(projects))}
+        {
+        projects.map((project) => (
           <button
             key={project.id}
             id={`project-button-${project.id}`}
